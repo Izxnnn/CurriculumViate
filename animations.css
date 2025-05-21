@@ -1,0 +1,286 @@
+/* Archivo de animaciones para el currículum web */
+
+/* Animaciones generales */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInFromLeft {
+    from { transform: translateX(-50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInFromRight {
+    from { transform: translateX(50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInFromBottom {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes skillBarFill {
+    from { width: 0; }
+    to { width: var(--skill-level); }
+}
+
+/* Animación para la foto de perfil */
+.profile-photo img {
+    transition: all 0.5s ease;
+    animation: fadeIn 1s ease-out;
+}
+
+.profile-photo img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 119, 181, 0.7);
+}
+
+/* Animaciones para la información de perfil */
+.profile-info h1 {
+    animation: slideInFromRight 0.8s ease-out;
+}
+
+.profile-info .profession {
+    animation: slideInFromRight 0.8s ease-out 0.2s;
+    animation-fill-mode: both;
+}
+
+.contact-info p {
+    animation: slideInFromRight 0.8s ease-out 0.4s;
+    animation-fill-mode: both;
+    transition: all 0.3s ease;
+}
+
+.contact-info p:hover {
+    transform: translateX(5px);
+    color: #0077b5;
+}
+
+/* Animaciones para la navegación */
+nav ul li {
+    transition: all 0.3s ease;
+    animation: fadeIn 0.5s ease-out;
+    animation-fill-mode: both;
+}
+
+nav ul li:nth-child(1) { animation-delay: 0.1s; }
+nav ul li:nth-child(2) { animation-delay: 0.2s; }
+nav ul li:nth-child(3) { animation-delay: 0.3s; }
+nav ul li:nth-child(4) { animation-delay: 0.4s; }
+nav ul li:nth-child(5) { animation-delay: 0.5s; }
+nav ul li:nth-child(6) { animation-delay: 0.6s; }
+nav ul li:nth-child(7) { animation-delay: 0.7s; }
+nav ul li:nth-child(8) { animation-delay: 0.8s; }
+
+nav ul li a {
+    transition: all 0.3s ease;
+}
+
+nav ul li a:hover {
+    transform: translateY(-3px);
+    text-shadow: 0 0 5px rgba(0, 119, 181, 0.5);
+}
+
+/* Animaciones para las secciones */
+.section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease;
+    /* Asegurar que las animaciones funcionen bien con el diseño de cuadrícula */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section h2 {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.section h2:after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #0077b5;
+    transition: width 0.5s ease;
+}
+
+.section.visible h2:after {
+    width: 50px;
+}
+
+/* Animaciones para las habilidades */
+.skill-level {
+    width: 0;
+    transition: width 1.5s ease-in-out;
+}
+
+.skills-list li {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.5s ease;
+}
+
+.skills-list.visible li {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.skills-list.visible li:nth-child(1) { transition-delay: 0.1s; }
+.skills-list.visible li:nth-child(2) { transition-delay: 0.2s; }
+.skills-list.visible li:nth-child(3) { transition-delay: 0.3s; }
+.skills-list.visible li:nth-child(4) { transition-delay: 0.4s; }
+
+.skills-list.visible .skill-level {
+    width: var(--skill-level);
+}
+
+/* Animaciones para proyectos */
+.project-item {
+    transition: all 0.4s ease;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.projects-container.visible .project-item {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.projects-container.visible .project-item:nth-child(1) { transition-delay: 0.1s; }
+.projects-container.visible .project-item:nth-child(2) { transition-delay: 0.3s; }
+
+.project-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Animaciones para redes sociales */
+.social-link {
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.social-links.visible .social-link {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.social-links.visible .social-link:nth-child(1) { transition-delay: 0.1s; }
+.social-links.visible .social-link:nth-child(2) { transition-delay: 0.2s; }
+.social-links.visible .social-link:nth-child(3) { transition-delay: 0.3s; }
+.social-links.visible .social-link:nth-child(4) { transition-delay: 0.4s; }
+
+.social-link:hover {
+    transform: scale(1.1) translateY(-5px);
+}
+
+.social-link.linkedin:hover { box-shadow: 0 5px 15px rgba(0, 119, 181, 0.4); }
+.social-link.github:hover { box-shadow: 0 5px 15px rgba(36, 41, 46, 0.4); }
+.social-link.twitter:hover { box-shadow: 0 5px 15px rgba(29, 161, 242, 0.4); }
+.social-link.instagram:hover { box-shadow: 0 5px 15px rgba(225, 48, 108, 0.4); }
+
+/* Animaciones para el formulario de contacto */
+.form-group {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+.contact-form.visible .form-group {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.contact-form.visible .form-group:nth-child(1) { transition-delay: 0.1s; }
+.contact-form.visible .form-group:nth-child(2) { transition-delay: 0.2s; }
+.contact-form.visible .form-group:nth-child(3) { transition-delay: 0.3s; }
+.contact-form.visible .form-group:nth-child(4) { transition-delay: 0.4s; }
+
+.form-group input, .form-group textarea {
+    transition: all 0.3s ease;
+    border: 1px solid #ccc;
+}
+
+.form-group input:focus, .form-group textarea:focus {
+    border-color: #0077b5;
+    box-shadow: 0 0 8px rgba(0, 119, 181, 0.4);
+    transform: translateY(-2px);
+}
+
+.submit-btn {
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.submit-btn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: #0077b5;
+    transition: all 0.4s ease;
+    z-index: -1;
+    opacity: 0.2;
+}
+
+.contact-form.visible .submit-btn {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.5s;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 119, 181, 0.3);
+    color: #fff;
+}
+
+.submit-btn:hover:before {
+    left: 0;
+    opacity: 1;
+}
+
+/* Animaciones para métodos de contacto directo */
+.contact-method {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.5s ease;
+}
+
+.contact-direct.visible .contact-method {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.contact-direct.visible .contact-method:nth-child(1) { transition-delay: 0.1s; }
+.contact-direct.visible .contact-method:nth-child(2) { transition-delay: 0.2s; }
+.contact-direct.visible .contact-method:nth-child(3) { transition-delay: 0.3s; }
+
+.contact-method:hover i {
+    transform: scale(1.2);
+    color: #0077b5;
+}
