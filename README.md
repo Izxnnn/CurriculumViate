@@ -1,15 +1,15 @@
 # Mi Currículum Web Personal
 
-Este proyecto contiene los archivos necesarios para crear tu propia página web de currículum vitae personal. La página está diseñada para mostrar tu información profesional de manera atractiva y organizada.
+Este proyecto contiene los archivos necesarios usados para la creación de mi propia página web personal.
 
 ## Contenido del Proyecto
 
 - `index.html`: Estructura principal de la página web
 - `styles.css`: Estilos y diseño visual de la página
 - `script.js`: Funcionalidades interactivas como desplazamiento suave y animaciones
-- `placeholder-profile.jpg`: Imagen SVG de marcador de posición para la foto de perfil
+- `moh.png`: Imagen SVG de marcador de posición para la foto de perfil
+- intro.html: Una introducción animada para captar la atención del lector.
 
-## Cómo Personalizar tu Currículum Web
 
 ### 1. Información Personal
 
@@ -44,7 +44,7 @@ Si deseas modificar el aspecto visual de tu currículum, puedes editar el archiv
 
 1. Para ver tu currículum web localmente, simplemente abre el archivo `index.html` en tu navegador
 2. Para publicarlo en internet, puedes utilizar servicios gratuitos como:
-   - GitHub Pages
+   - GitHub (Como en este caso)
    - Netlify
    - Vercel
    - Firebase Hosting
