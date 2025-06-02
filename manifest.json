@@ -1,0 +1,21 @@
+{
+  "name": "Currículum Web de Izan Martín",
+  "short_name": "CV Izan",
+  "description": "Portfolio profesional y currículum web de Izan Martín, desarrollador web y experto en marketing digital",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4a6cf7",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "apple-touch-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

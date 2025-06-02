@@ -112,18 +112,21 @@ document.addEventListener('DOMContentLoaded', function() {
             const screenPosition = window.innerHeight / 1.1; // Aumentamos el área de detección
             
             if (barPosition < screenPosition) {
-                bar.style.width = bar.parentElement.getAttribute('data-level') || bar.style.width;
+                // Usar directamente el ancho definido en el estilo inline
+                const width = bar.style.width || bar.parentElement.getAttribute('data-level');
+                bar.style.width = width;
                 bar.classList.add('animated');
             }
         });
     }
     
-    // Inicialmente ocultar el ancho de las barras
+    // Inicialmente guardar el ancho de las barras pero no ocultarlas
     skillBars.forEach(bar => {
         const width = bar.style.width;
-        bar.parentElement.setAttribute('data-level', width);
-        bar.style.setProperty('--skill-level', width);
-        bar.style.width = '0';
+        if (width) {
+            bar.parentElement.setAttribute('data-level', width);
+            // No resetear el ancho a 0 para que las barras sean visibles inmediatamente
+        }
     });
     
     // Añadir evento de scroll para animar las barras

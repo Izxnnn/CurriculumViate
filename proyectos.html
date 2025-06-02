@@ -3,9 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis Proyectos - Izan Martín Velasco</title>
+    <title>Proyectos - Izan Martín Velasco</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Explora los proyectos de desarrollo web y marketing digital de Izan Martín Velasco. Portafolio de trabajos en Java, HTML/CSS, JavaScript y SQL.">
+    <meta name="keywords" content="proyectos desarrollo web, portfolio programador, Izan Martín Velasco, Java, HTML, CSS, JavaScript, SQL, marketing digital">
+    <meta name="author" content="Izan Martín Velasco">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://izanmartin.com/proyectos.html">
+    <meta property="og:title" content="Proyectos - Izan Martín Velasco | Programador Junior">
+    <meta property="og:description" content="Explora los proyectos de desarrollo web y marketing digital de Izan Martín Velasco. Portafolio de trabajos en Java, HTML/CSS, JavaScript y SQL.">
+    <meta property="og:image" content="Imágenes/proyectos.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://izanmartin.com/proyectos.html">
+    <meta property="twitter:title" content="Proyectos - Izan Martín Velasco | Programador Junior">
+    <meta property="twitter:description" content="Explora los proyectos de desarrollo web y marketing digital de Izan Martín Velasco. Portafolio de trabajos en Java, HTML/CSS, JavaScript y SQL.">
+    <meta property="twitter:image" content="Imágenes/proyectos.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="apple-touch-icon.svg" type="image/svg+xml">
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://izanmartin.com/proyectos.html">
+    
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* Estilos simplificados para la página de proyectos */
         .projects-grid {
@@ -35,46 +65,131 @@
         
         .project-card {
             background-color: white;
-            border-radius: 8px;
+            border-radius: 12px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             flex: 0 0 300px;
             margin-bottom: 1rem;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+        
+        /* Efecto de brillo dinámico para las tarjetas */
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #0077b5, #00a8e8, #0077b5);
+            background-size: 200% 200%;
+            z-index: -2;
+            border-radius: 14px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            animation: gradient-shift 3s ease infinite;
+            filter: blur(8px);
+        }
+        
+        .project-card:hover::before {
+            opacity: 0.7;
+        }
+        
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         
         /* Controles de navegación para el carrusel */
         .scroll-controls {
             display: flex;
             justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
-            margin-bottom: 1rem;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            perspective: 1000px;
         }
         
         .scroll-btn {
-            background-color: #0077b5;
+            background: linear-gradient(135deg, #0077b5, #00a8e8);
             color: white;
             border: none;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 119, 181, 0.2);
+            transform-style: preserve-3d;
+        }
+        
+        .scroll-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.8) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            transform: translateZ(1px);
         }
         
         .scroll-btn:hover {
-            background-color: #005582;
-            transform: scale(1.1);
+            background: linear-gradient(135deg, #00a8e8, #0077b5);
+            transform: scale(1.15) translateZ(20px);
+            box-shadow: 0 15px 25px rgba(0, 119, 181, 0.3);
+        }
+        
+        .scroll-btn:hover::before {
+            opacity: 0.3;
+        }
+        
+        .scroll-btn:active {
+            transform: scale(0.95) translateZ(10px);
+            box-shadow: 0 5px 10px rgba(0, 119, 181, 0.2);
         }
         
         .project-card:hover {
-            box-shadow: 0 10px 25px rgba(0, 119, 181, 0.2);
-            transform: translateY(-10px);
+            box-shadow: 0 20px 30px rgba(0, 119, 181, 0.25);
+            transform: translateY(-15px) translateZ(20px);
+        }
+        
+        /* Efecto de rotación 3D basado en la posición del cursor */
+        .project-card.tilt {
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+        
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: -1;
+            border-radius: 12px;
+            transform: translateZ(-1px);
+        }
+        
+        .project-card:hover::after {
+            opacity: 1;
         }
         
         .project-image {
@@ -82,21 +197,79 @@
             height: 180px;
             overflow: hidden;
             position: relative;
+            transform-style: preserve-3d;
+        }
+        
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 119, 181, 0.2) 0%, transparent 50%, rgba(0, 168, 232, 0.2) 100%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 1;
+        }
+        
+        .project-card:hover .project-image::before {
+            opacity: 1;
         }
         
         .project-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-origin: center center;
         }
         
         .project-card:hover .project-image img {
-            transform: scale(1.1);
+            transform: scale(1.15) translateZ(10px);
         }
         
         .project-content {
             padding: 1.5rem;
+            transform-style: preserve-3d;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .project-title {
+            transform: translateZ(10px);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .project-card:hover .project-title {
+            transform: translateZ(25px);
+        }
+        
+        .project-description {
+            transform: translateZ(5px);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .project-card:hover .project-description {
+            transform: translateZ(15px);
+        }
+        
+        .project-tech {
+            transform: translateZ(8px);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .project-card:hover .project-tech {
+            transform: translateZ(20px);
+        }
+        
+        .project-links {
+            transform: translateZ(12px);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .project-card:hover .project-links {
+            transform: translateZ(30px);
         }
         
         .project-title {
@@ -122,15 +295,40 @@
         .tech-tag {
             background-color: rgba(0, 119, 181, 0.1);
             color: #0077b5;
-            padding: 0.3rem 0.8rem;
+            padding: 0.4rem 0.9rem;
             border-radius: 20px;
             font-size: 0.8rem;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            transform: translateZ(0);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .tech-tag::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #0077b5, #00a8e8);
+            z-index: -1;
+            transform: scale(0.8);
+            opacity: 0;
+            transition: all 0.4s ease;
+            border-radius: 22px;
         }
         
         .tech-tag:hover {
-            background-color: #0077b5;
             color: white;
+            transform: translateY(-3px) translateZ(5px);
+            box-shadow: 0 5px 10px rgba(0, 119, 181, 0.2);
+        }
+        
+        .tech-tag:hover::before {
+            opacity: 1;
+            transform: scale(1);
         }
         
         .project-links {
@@ -142,10 +340,42 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            transition: all 0.2s ease;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             background-color: #f5f5f5;
+            position: relative;
+            overflow: hidden;
+            transform: translateZ(0);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .project-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transform: skewX(-25deg);
+            transition: all 0.7s ease;
+        }
+        
+        .project-links a:hover {
+            transform: translateY(-5px) translateZ(10px);
+            box-shadow: 0 8px 15px rgba(0, 119, 181, 0.2);
+            background: linear-gradient(45deg, #0077b5, #00a8e8);
+            color: white;
+        }
+        
+        .project-links a:hover::before {
+            animation: shine 1.5s infinite;
+        }
+        
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 200%; }
         }
         
         .project-links a:hover {
@@ -157,6 +387,15 @@
     </style>
 </head>
 <body>
+    <!-- Preloader Script -->
+    <script src="preloader.js"></script>
+    <script>
+        // Inicializar preloader inmediatamente
+        if (typeof initPreloader === 'function') {
+            initPreloader();
+        }
+    </script>
+    
     <header>
         <div class="profile-container">
             <div class="profile-photo">
@@ -493,17 +732,205 @@
     </main>
 
     <footer>
-        <p>&copy; 2024 Izan Martín Velasco. Todos los derechos reservados.</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-envelope"></i> contacto@izanmartin.com</p>
+                    <p><i class="fas fa-phone"></i> +34 600 000 000</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Valladolid, España</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Mapa del sitio</h3>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="proyectos.html">Proyectos</a></li>
+                        <li><a href="privacy-policy.html">Política de Privacidad</a></li>
+                        <li><a href="terms.html">Términos de Uso</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Redes Sociales</h3>
+                    <div class="social-icons">
+                        <a href="https://linkedin.com/in/izanmartin" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/izanmartin" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://twitter.com/izanmartin" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Izan Martín Velasco. Todos los derechos reservados.</p>
+                <p>Currículum Web Personal - Desarrollador Web y Marketing Digital</p>
+                <p class="footer-legal">
+                    <a href="sitemap.xml">Sitemap</a> | 
+                    <a href="privacy-policy.html">Política de Privacidad</a> | 
+                    <a href="terms.html">Términos de Uso</a>
+                </p>
+            </div>
+        </div>
     </footer>
     <script>
+        // Función para desplazamiento horizontal de los grids de proyectos
         function scrollProjects(sectionId, direction) {
             const container = document.getElementById(sectionId + '-grid');
-            const scrollAmount = 350; // Ancho aproximado de una tarjeta + margen
-            
+            const scrollAmount = 350; // Ajusta según el ancho de tus tarjetas
             if (direction === 'left') {
                 container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
             } else {
                 container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            }
+        }
+        
+        // Efecto de rotación 3D basado en la posición del cursor (efecto tilt) y animación de carga
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.project-card');
+            
+            // Animación de carga progresiva
+            setTimeout(() => {
+                cards.forEach((card, index) => {
+                    // Añadir clase tilt para el efecto 3D
+                    card.classList.add('tilt');
+                    
+                    // Establecer estado inicial para la animación
+                    card.style.opacity = '0';
+                    card.style.transform = 'perspective(1000px) translateY(50px) scale(0.9)';
+                    
+                    // Aplicar animación con retraso progresivo
+                    setTimeout(() => {
+                        card.style.transition = 'all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                        card.style.opacity = '1';
+                        card.style.transform = 'perspective(1000px) translateY(0) scale(1)';
+                    }, 100 * index); // Retraso progresivo para cada tarjeta
+                    
+                    // Efecto de rotación 3D al mover el cursor
+                    card.addEventListener('mousemove', function(e) {
+                        // Obtener posición relativa del cursor dentro de la tarjeta
+                        const rect = card.getBoundingClientRect();
+                        const x = e.clientX - rect.left; // Posición X relativa al elemento
+                        const y = e.clientY - rect.top;  // Posición Y relativa al elemento
+                        
+                        // Calcular rotación basada en la posición del cursor
+                        // Convertir la posición a un valor entre -15 y 15 grados
+                        const xRotation = 15 * ((y - rect.height / 2) / rect.height);
+                        const yRotation = -15 * ((x - rect.width / 2) / rect.width);
+                        
+                        // Aplicar transformación
+                        card.style.transform = `
+                            perspective(1000px) 
+                            rotateX(${xRotation}deg) 
+                            rotateY(${yRotation}deg) 
+                            translateZ(20px)
+                        `;
+                    });
+                    
+                    // Restablecer la transformación cuando el cursor sale de la tarjeta
+                    card.addEventListener('mouseleave', function() {
+                        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+                    });
+                });
+            }, 300); // Pequeño retraso inicial para asegurar que la página esté lista
+        });
+    </script>
+    <script src="script.js"></script>
+    <script src="three-effects.js"></script>
+    <script src="gsap-animations.js"></script>
+    <script src="custom-cursor.js"></script>
+    <script src="scroll-reveal.js"></script>
+    <script src="theme-switcher.js"></script>
+    <script src="analytics.js"></script>
+    <script src="social-share.js"></script>
+    <script src="structured-data.js"></script>
+    <script src="interactive-background.js"></script>
+    <script>
+        // Inicializar efectos 3D y animaciones GSAP cuando se cargue la página
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar efectos 3D con Three.js
+            if (typeof initThreeEffects === 'function') {
+                initThreeEffects();
+            }
+            
+            // Inicializar animaciones GSAP
+            if (typeof initGSAPAnimations === 'function') {
+                initGSAPAnimations();
+            }
+            
+            // Inicializar cursor personalizado
+            if (typeof initCustomCursor === 'function') {
+                initCustomCursor();
+            }
+            
+            // Inicializar efectos de scroll y revelación
+            if (typeof initScrollRevealEffects === 'function') {
+                initScrollRevealEffects();
+            }
+            
+            // Inicializar cambiador de tema
+            if (typeof initThemeSwitcher === 'function') {
+                initThemeSwitcher();
+            }
+            
+            // Inicializar fondo interactivo
+            if (typeof initInteractiveBackground === 'function') {
+                initInteractiveBackground();
+            }
+            
+            // Efectos específicos para la página de proyectos
+            initProjectsPageEffects();
+        });
+        
+        // Función para inicializar efectos específicos de la página de proyectos
+        function initProjectsPageEffects() {
+            // Añadir efecto de rotación 3D a las tarjetas de proyectos
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            projectCards.forEach(card => {
+                card.addEventListener('mousemove', function(e) {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left; // Posición X del ratón dentro de la tarjeta
+                    const y = e.clientY - rect.top;  // Posición Y del ratón dentro de la tarjeta
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = (y - centerY) / 10 * -1; // Invertir para que la rotación sea natural
+                    const rotateY = (x - centerX) / 10;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    card.style.transition = 'transform 0.5s ease';
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+                    
+                    // Eliminar la transición después de completarla
+                    setTimeout(() => {
+                        card.style.transition = '';
+                    }, 500);
+                });
+            });
+            
+            // Si GSAP está disponible, añadir animaciones de entrada
+            if (typeof gsap !== 'undefined') {
+                // Animar las tarjetas de proyectos
+                gsap.from('.project-card', {
+                    opacity: 0,
+                    y: 50,
+                    stagger: 0.1,
+                    duration: 0.8,
+                    ease: 'power3.out'
+                });
+                
+                // Animar los botones de navegación
+                gsap.from('.scroll-btn', {
+                    opacity: 0,
+                    scale: 0.5,
+                    duration: 0.5,
+                    delay: 0.5,
+                    ease: 'back.out(1.7)'
+                });
             }
         }
     </script>
