@@ -1,4 +1,4 @@
-// Navegación con desplazamiento suave
+// Navegación con desplazamiento suave y efectos mejorados
 document.addEventListener('DOMContentLoaded', function() {
     // Añadir referencia al archivo de animaciones CSS
     const animationStyles = document.createElement('link');
@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Crear efecto de partículas flotantes en el fondo
     createBackgroundParticles();
+    
+    // Añadir efecto de parallax al desplazamiento
+    initParallaxEffect();
     // Seleccionar todos los enlaces de navegación
     const navLinks = document.querySelectorAll('nav a');
     
@@ -44,6 +47,22 @@ document.addEventListener('DOMContentLoaded', function() {
             activateSectionAnimations(section);
         }
     });
+    
+    // Función para verificar y animar todas las secciones al desplazarse
+    function checkAllSections() {
+        sections.forEach(section => {
+            if (isElementInViewport(section) && !section.classList.contains('visible')) {
+                section.classList.add('visible');
+                activateSectionAnimations(section);
+            }
+        });
+    }
+    
+    // Añadir evento de scroll para verificar todas las secciones
+    window.addEventListener('scroll', checkAllSections);
+    
+    // Verificar secciones al cargar la página
+    checkAllSections();
     
     // Función para resaltar la sección activa durante el desplazamiento
     function highlightActiveSection() {
@@ -90,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function animateSkillBars() {
         skillBars.forEach(bar => {
             const barPosition = bar.getBoundingClientRect().top;
-            const screenPosition = window.innerHeight / 1.3;
+            const screenPosition = window.innerHeight / 1.1; // Aumentamos el área de detección
             
             if (barPosition < screenPosition) {
                 bar.style.width = bar.parentElement.getAttribute('data-level') || bar.style.width;
@@ -117,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function isElementInViewport(el) {
         const rect = el.getBoundingClientRect();
         return (
-            rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8 &&
+            rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.9 &&
             rect.bottom >= 0
         );
     }
@@ -145,64 +164,102 @@ document.addEventListener('DOMContentLoaded', function() {
         if (contactDirect) contactDirect.classList.add('visible');
     }
     
-    // Función para crear partículas flotantes en el fondo
-    function createBackgroundParticles() {
-        const particlesContainer = document.createElement('div');
-        particlesContainer.className = 'background-particles';
-        document.body.prepend(particlesContainer);
+    // Función para crear partículas flotantes en el fondo (mejorada)
+function createBackgroundParticles() {
+    const particlesContainer = document.createElement('div');
+    particlesContainer.className = 'background-particles';
+    document.body.prepend(particlesContainer);
+    
+    // Crear partículas
+    for (let i = 0; i < 70; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
         
-        // Crear partículas
-        for (let i = 0; i < 30; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            
-            // Posición aleatoria
-            particle.style.left = `${Math.random() * 100}%`;
-            particle.style.top = `${Math.random() * 100}%`;
-            
-            // Tamaño variable
-            const size = 1 + Math.random() * 3;
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            
-            // Animación personalizada
-            particle.style.animationDuration = `${5 + Math.random() * 10}s`;
-            particle.style.animationDelay = `${Math.random() * 5}s`;
-            
-            particlesContainer.appendChild(particle);
+        // Posición aleatoria
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        
+        // Tamaño aleatorio
+        const size = Math.random() * 12 + 3;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        
+        // Opacidad aleatoria
+        particle.style.opacity = Math.random() * 0.5 + 0.1;
+        
+        // Color aleatorio (tonos de azul)
+        const hue = 200 + Math.random() * 20; // Tonos de azul
+        const saturation = 70 + Math.random() * 30;
+        const lightness = 60 + Math.random() * 20;
+        particle.style.backgroundColor = `hsla(${hue}, ${saturation}%, ${lightness}%, 0.3)`;
+        
+        // Duración de animación aleatoria (más rápida)
+        particle.style.animationDuration = `${3 + Math.random() * 10}s`;
+        particle.style.animationDelay = `${Math.random() * 3}s`;
+        
+        particlesContainer.appendChild(particle);
+    }
+    
+    // Añadir estilos para las partículas
+    const particleStyles = document.createElement('style');
+    particleStyles.textContent = `
+        .background-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
         }
         
-        // Añadir estilos CSS para las partículas
-        const particleStyles = document.createElement('style');
-        particleStyles.textContent = `
-            .background-particles {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                pointer-events: none;
-                z-index: -1;
-                overflow: hidden;
-            }
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            animation: floatParticle 15s infinite ease-in-out;
+            filter: blur(1px);
+        }
+        
+        @keyframes floatParticle {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(15px, 15px) rotate(90deg); }
+            50% { transform: translate(0, 30px) rotate(180deg); }
+            75% { transform: translate(-15px, 15px) rotate(270deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+    `;
+    document.head.appendChild(particleStyles);
+}
+
+// La función de cursor personalizado ha sido eliminada por solicitud del usuario
+
+// Función para inicializar el efecto parallax
+function initParallaxEffect() {
+    const sections = document.querySelectorAll('.section');
+    const profilePhoto = document.querySelector('.profile-photo');
+    
+    window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        
+        // Efecto parallax para la foto de perfil
+        if (profilePhoto) {
+            profilePhoto.style.transform = `translateY(${scrollY * 0.1}px)`;
+        }
+        
+        // Efecto parallax para las secciones
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionMiddle = sectionTop + sectionHeight / 2;
+            const distanceFromMiddle = scrollY + window.innerHeight / 2 - sectionMiddle;
+            const parallaxValue = distanceFromMiddle * 0.05;
             
-            .particle {
-                position: absolute;
-                background-color: rgba(0, 119, 181, 0.2);
-                border-radius: 50%;
-                animation: floatParticle 10s infinite linear;
-            }
-            
-            @keyframes floatParticle {
-                0% { transform: translate(0, 0); }
-                25% { transform: translate(10px, 10px); }
-                50% { transform: translate(0, 20px); }
-                75% { transform: translate(-10px, 10px); }
-                100% { transform: translate(0, 0); }
-            }
-        `;
-        document.head.appendChild(particleStyles);
-    }
+            // Aplicar efecto sutil de parallax
+            section.style.transform = `translateY(${parallaxValue}px)`;
+        });
+    });
+}
     
     // Llamar a la función al cargar la página
     animateSkillBars();

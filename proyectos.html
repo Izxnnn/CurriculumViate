@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Proyectos - Izan Martín Velasco</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos simplificados para la página de proyectos */
+        .projects-grid {
+            display: flex;
+            overflow-x: auto;
+            gap: 2rem;
+            margin-top: 2rem;
+            padding-bottom: 1rem;
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: #0077b5 #f5f5f5;
+        }
+        
+        .projects-grid::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .projects-grid::-webkit-scrollbar-track {
+            background: #f5f5f5;
+            border-radius: 10px;
+        }
+        
+        .projects-grid::-webkit-scrollbar-thumb {
+            background-color: #0077b5;
+            border-radius: 10px;
+        }
+        
+        .project-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            flex: 0 0 300px;
+            margin-bottom: 1rem;
+        }
+        
+        /* Controles de navegación para el carrusel */
+        .scroll-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .scroll-btn {
+            background-color: #0077b5;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .scroll-btn:hover {
+            background-color: #005582;
+            transform: scale(1.1);
+        }
+        
+        .project-card:hover {
+            box-shadow: 0 10px 25px rgba(0, 119, 181, 0.2);
+            transform: translateY(-10px);
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: #0077b5;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .project-description {
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tech-tag {
+            background-color: rgba(0, 119, 181, 0.1);
+            color: #0077b5;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+        
+        .tech-tag:hover {
+            background-color: #0077b5;
+            color: white;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .project-links a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            background-color: #f5f5f5;
+        }
+        
+        .project-links a:hover {
+            background-color: #0077b5;
+            color: white;
+        }
+        /* Estilos para la sección Acerca de */
+        /* Eliminados los estilos de la sección Acerca de */
+    </style>
+</head>
+<body>
+    <header>
+        <div class="profile-container">
+            <div class="profile-photo">
+                <img src="Imágenes\IMG_20250522_100911.jpg" alt="Mi Foto de Perfil">
+            </div>
+            <div class="profile-info">
+                <h1>Izan Martín Velasco</h1>
+                <p class="profession">Programador Junior</p>
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope"></i> izanmartin210@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +34 644 85 55 85</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Valladolid, España </p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="#todos">Todos los Proyectos</a></li>
+            <li><a href="#web">Desarrollo Web</a></li>
+            <li><a href="#movil">Aplicaciones Móviles</a></li>
+            <li><a href="#otros">Otros Proyectos</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Sección de Todos los Proyectos -->
+        <section id="todos" class="section">
+            <h2>Todos los Proyectos</h2>
+            <div class="section-content">
+                <p class="intro-text">Aquí encontrarás una colección de mis proyectos más destacados. Cada proyecto representa un desafío único que me ha permitido aplicar y expandir mis conocimientos en programación.</p>
+                
+                <div class="scroll-controls">
+                    <button class="scroll-btn scroll-left" onclick="scrollProjects('todos', 'left')"><i class="fas fa-chevron-left"></i></button>
+                    <button class="scroll-btn scroll-right" onclick="scrollProjects('todos', 'right')"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="projects-grid" id="todos-grid">
+                    <!-- Proyecto 1 -->
+                    <div class="project-card" data-category="web">
+                        <div class="project-image">
+                            <img src="Imágenes/personal.webp" alt="Proyecto Web">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Sitio Web Personal</h3>
+                            <p class="project-description">Desarrollo de mi sitio web personal utilizando HTML, CSS y JavaScript para mostrar mi portafolio y habilidades.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">HTML5</span>
+                                <span class="tech-tag">CSS3</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">Responsive</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" target="_blank"><i class="fas fa-link"></i> Ver Demo</a>
+                                <a href="https://github.com/Izxnnn" target="_blank"><i class="fab fa-github"></i> Ver Código</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Proyecto 2 -->
+                    <div class="project-card" data-category="movil">
+                        <div class="project-image">
+                            <img src="Imágenes/tareas.webp" alt="Aplicación Móvil">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Aplicación de Tareas</h3>
+                            <p class="project-description">Aplicación móvil para gestionar tareas diarias, con funcionalidades de recordatorios y categorización.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Java</span>
+                                <span class="tech-tag">Android Studio</span>
+                                <span class="tech-tag">SQLite</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" target="_blank"><i class="fas fa-link"></i> Ver Demo</a>
+                                <a href="https://github.com/Izxnnn" target="_blank"><i class="fab fa-github"></i> Ver Código</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Proyecto 3 -->
+                    <div class="project-card" data-category="web">
+                        <div class="project-image">
+                            <img src="Imágenes/e commerce.webp" alt="E-commerce">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Tienda Online</h3>
+                            <p class="project-description">Plataforma de comercio electrónico con catálogo de productos, carrito de compras y sistema de pagos.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">HTML5</span>
+                                <span class="tech-tag">CSS3</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">PHP</span>
+                                <span class="tech-tag">MySQL</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" target="_blank"><i class="fas fa-link"></i> Ver Demo</a>
+                                <a href="https://github.com/Izxnnn" target="_blank"><i class="fab fa-github"></i> Ver Código</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Proyecto 4 -->
+                    <div class="project-card" data-category="otros">
+                        <div class="project-image">
+                            <img src="Imágenes/2d.webp" alt="Juego">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Juego de Plataformas</h3>
+                            <p class="project-description">Videojuego de plataformas 2D con múltiples niveles, enemigos y sistema de puntuación.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Java</span>
+                                <span class="tech-tag">LibGDX</span>
+                                <span class="tech-tag">Box2D</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" target="_blank"><i class="fas fa-link"></i> Ver Demo</a>
+                                <a href="https://github.com/Izxnnn" target="_blank"><i class="fab fa-github"></i> Ver Código</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Proyecto 5 -->
+                    <div class="project-card" data-category="web">
+                        <div class="project-image">
+                            <img src="Imágenes/recetasfaciles.webp" alt="Blog Personal">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Blog de Tecnología</h3>
+                            <p class="project-description">Blog personal sobre tecnología y programación con sistema de comentarios y categorías.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">WordPress</span>
+                                <span class="tech-tag">PHP</span>
+                                <span class="tech-tag">MySQL</span>
+                                <span class="tech-tag">CSS</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" target="_blank"><i class="fas fa-link"></i> Ver Demo</a>
+                                <a href="https://github.com/Izxnnn" target="_blank"><i class="fab fa-github"></i> Ver Código</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Proyecto 6 -->
+                    <div class="project-card" data-category="otros">
+                        <div class="project-image">
+                            <img src="Imágenes/aistvirtual.webp" alt="Análisis de Datos">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Dashboard Analítico</h3>
+                            <p class="project-description">Dashboard interactivo para visualización y análisis de datos empresariales con gráficos dinámicos.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Pandas</span>
+                                <span class="tech-tag">Matplotlib</span>
+                                <span class="tech-tag">Flask</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" target="_blank"><i class="fas fa-link"></i> Ver Demo</a>
+                                <a href="https://github.com/Izxnnn" target="_blank"><i class="fab fa-github"></i> Ver Código</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sección de Desarrollo Web -->
+        <section id="web" class="section">
+            <h2>Desarrollo Web</h2>
+            <div class="section-content">
+                <p class="intro-text">Proyectos enfocados en desarrollo web, utilizando tecnologías como HTML, CSS, JavaScript y frameworks modernos.</p>
+                
+                <div class="scroll-controls">
+                    <button class="scroll-btn scroll-left" onclick="scrollProjects('web', 'left')"><i class="fas fa-chevron-left"></i></button>
+                    <button class="scroll-btn scroll-right" onclick="scrollProjects('web', 'right')"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="projects-grid" id="web-grid">
+                    <!-- Proyecto Web 1 -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="Imágenes/personal.webp" alt="Proyecto Web">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Sitio Web Personal</h3>
+                            <p class="project-description">Desarrollo de mi sitio web personal utilizando HTML, CSS y JavaScript para mostrar mi portafolio y habilidades.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">HTML5</span>
+                                <span class="tech-tag">CSS3</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">Responsive</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" target="_blank"><i class="fas fa-link"></i> Ver Demo</a>
+                                <a href="https://github.com/Izxnnn" target="_blank"><i class="fab fa-github"></i> Ver Código</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Proyecto Web 2 -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="Imágenes/e commerce.webp" alt="E-commerce">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Tienda Online</h3>
+                            <p class="project-description">Plataforma de comercio electrónico con catálogo de productos, carrito de compras y sistema de pagos.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">HTML5</span>
+                                <span class="tech-tag">CSS3</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">PHP</span>
+                                <span class="tech-tag">MySQL</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" target="_blank"><i class="fas fa-link"></i> Ver Demo</a>
+                                <a href="https://github.com/Izxnnn" target="_blank"><i class="fab fa-github"></i> Ver Código</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Proyecto Web 3 -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="Imágenes/recetasfaciles.webp" alt="Blog Personal">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Blog de Tecnología</h3>
+                            <p class="project-description">Blog personal sobre tecnología y programación con sistema de comentarios y categorías.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">WordPress</span>
+                                <span class="tech-tag">PHP</span>
+                                <span class="tech-tag">MySQL</span>
+                                <span class="tech-tag">CSS</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" target="_blank"><i class="fas fa-link"></i> Ver Demo</a>
+                                <a href="https://github.com/Izxnnn" target="_blank"><i class="fab fa-github"></i> Ver Código</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sección de Aplicaciones Móviles -->
+        <section id="movil" class="section">
+            <h2>Aplicaciones Móviles</h2>
+            <div class="section-content">
+                <p class="intro-text">Proyectos de desarrollo de aplicaciones móviles para Android e iOS, enfocados en la experiencia de usuario y funcionalidad.</p>
+                
+                <div class="scroll-controls">
+                    <button class="scroll-btn scroll-left" onclick="scrollProjects('movil', 'left')"><i class="fas fa-chevron-left"></i></button>
+                    <button class="scroll-btn scroll-right" onclick="scrollProjects('movil', 'right')"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="projects-grid" id="movil-grid">
+                    <!-- Proyecto Móvil 1 -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="Imágenes/tareas.webp" alt="Aplicación Móvil">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Aplicación de Tareas</h3>
+                            <p class="project-description">Aplicación móvil para gestionar tareas diarias, con funcionalidades de recordatorios y categorización.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Java</span>
+                                <span class="tech-tag">Android Studio</span>
+                                <span class="tech-tag">SQLite</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" target="_blank"><i class="fas fa-link"></i> Ver Demo</a>
+                                <a href="https://github.com/Izxnnn" target="_blank"><i class="fab fa-github"></i> Ver Código</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sección de Otros Proyectos -->
+        <section id="otros" class="section">
+            <h2>Otros Proyectos</h2>
+            <div class="section-content">
+                <p class="intro-text">Proyectos diversos que abarcan diferentes áreas de la programación y tecnología.</p>
+                
+                <div class="scroll-controls">
+                    <button class="scroll-btn scroll-left" onclick="scrollProjects('otros', 'left')"><i class="fas fa-chevron-left"></i></button>
+                    <button class="scroll-btn scroll-right" onclick="scrollProjects('otros', 'right')"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="projects-grid" id="otros-grid">
+                    <!-- Proyecto Otro 1 -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="Imágenes/2d.webp" alt="Juego">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Juego de Plataformas</h3>
+                            <p class="project-description">Videojuego de plataformas 2D con múltiples niveles, enemigos y sistema de puntuación.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Java</span>
+                                <span class="tech-tag">LibGDX</span>
+                                <span class="tech-tag">Box2D</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" target="_blank"><i class="fas fa-link"></i> Ver Demo</a>
+                                <a href="https://github.com/Izxnnn" target="_blank"><i class="fab fa-github"></i> Ver Código</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Proyecto Otro 2 -->
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="Imágenes/aistvirtual.webp" alt="Análisis de Datos">
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">Dashboard Analítico</h3>
+                            <p class="project-description">Dashboard interactivo para visualización y análisis de datos empresariales con gráficos dinámicos.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Pandas</span>
+                                <span class="tech-tag">Matplotlib</span>
+                                <span class="tech-tag">Flask</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" target="_blank"><i class="fas fa-link"></i> Ver Demo</a>
+                                <a href="https://github.com/Izxnnn" target="_blank"><i class="fab fa-github"></i> Ver Código</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Izan Martín Velasco. Todos los derechos reservados.</p>
+    </footer>
+    <script>
+        function scrollProjects(sectionId, direction) {
+            const container = document.getElementById(sectionId + '-grid');
+            const scrollAmount = 350; // Ancho aproximado de una tarjeta + margen
+            
+            if (direction === 'left') {
+                container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            } else {
+                container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>
